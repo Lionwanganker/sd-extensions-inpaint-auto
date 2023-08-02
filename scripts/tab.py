@@ -4,7 +4,7 @@ import os
 
 from modules import script_callbacks
 
-from srcipts.run_process import run
+from scripts.run_process import run
 
 
 def on_ui_tabs():
