@@ -1,0 +1,1 @@
+# sd-extensions-inpaint-auto
