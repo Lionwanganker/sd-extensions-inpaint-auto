@@ -8,10 +8,16 @@ from PIL import Image
 
 def run(img_raw: Image, prompt, n_prompt):
     # A1111 URL
-    url = "http://4.193.198.186:7861"
-
+    url = "http://127.0.0.1:7861"
+    height = img_raw.size[1]
+    width = img_raw.size[0]
+    if width > 1024:
+        n = 1024/(height*1.0)
+        height = int(height * n)
+        width = int(width * n)
     # Read Image in RGB order
     img = cv2.cvtColor(numpy.asarray(img_raw),cv2.COLOR_RGB2BGR)
+
 
     # Encode into PNG and send to ControlNet
     retval, bytes = cv2.imencode('.png', img)
@@ -58,8 +64,8 @@ def run(img_raw: Image, prompt, n_prompt):
         "n_iter": 1,  # 生成批次
         "steps": 35,  # 生成步数
         "cfg_scale": 10,  # 关键词相关性
-        "width": 512,  # 宽度
-        "height": 512,  # 高度
+        "width": width,  # 宽度
+        "height": height,  # 高度
         "restore_faces": False,  # 脸部修复
         "tiling": False,  # 可平埔
         "inpainting_fill": 1, # 蒙版遮住的内容， 0填充， 1原图 2潜空间噪声 3潜空间数值零

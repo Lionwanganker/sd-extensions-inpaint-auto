@@ -10,17 +10,17 @@ from scripts.run_process import run
 def on_ui_tabs():
     with gr.Blocks(analytics_enabled=False) as ui_component:
         with gr.Row():
-            input_image = gr.Image(label="Input image", elem_id="ia_input_image", source="upload", type="numpy", interactive=True)
+            input_image = gr.Image(label="Input image", elem_id="ia_input_image", source="upload", type="pil", interactive=True)
             prompt = gr.Textbox(
                 label="Prompt",
                 lines=3,
-                value="Prompt",
-            ),
+                placeholder="Prompt",
+            )
             n_prompt = gr.Textbox(
                 label="Negative prompt",
                 lines=3,
-                value="Negative prompt",
-            ),
+                placeholder="Negative prompt",
+            )
             btn = gr.Button(
                 "Inpaint Image"
             ).style(
